@@ -27,6 +27,14 @@ async function getModel(config: AgentConfig) {
       config.llmModel
     );
   }
+  if (config.llmProvider === "glm") {
+    // GLM (Zhipu AI) uses OpenAI-compatible API
+    const { createOpenAI } = await import("@ai-sdk/openai");
+    return createOpenAI({
+      apiKey: config.llmApiKey,
+      baseURL: config.llmBaseUrl || "https://open.bigmodel.cn/api/paas/v4",
+    })(config.llmModel);
+  }
   throw new Error(`Unsupported LLM provider: ${config.llmProvider}`);
 }
 

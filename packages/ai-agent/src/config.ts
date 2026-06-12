@@ -10,9 +10,10 @@ import "dotenv/config";
 
 export interface AgentConfig {
   // LLM
-  llmProvider: "anthropic" | "openai" | "google";
+  llmProvider: "anthropic" | "openai" | "google" | "glm";
   llmModel: string;
   llmApiKey: string;
+  llmBaseUrl?: string;
 
   // Merchant
   merchantUrl: string;
@@ -43,20 +44,23 @@ export interface AgentConfig {
 }
 
 export function loadConfig(): AgentConfig {
-  const provider = (process.env.LLM_PROVIDER || "anthropic") as
+  const provider = (process.env.LLM_PROVIDER || "glm") as
     | "anthropic"
     | "openai"
-    | "google";
+    | "google"
+    | "glm";
 
   const apiKeyMap: Record<string, string | undefined> = {
     anthropic: process.env.ANTHROPIC_API_KEY,
     openai: process.env.OPENAI_API_KEY,
     google: process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.GEMINI_API_KEY,
+    glm: process.env.GLM_API_KEY,
   };
   const envVarMap: Record<string, string> = {
     anthropic: "ANTHROPIC_API_KEY",
     openai: "OPENAI_API_KEY",
     google: "GOOGLE_GENERATIVE_AI_API_KEY",
+    glm: "GLM_API_KEY",
   };
 
   const llmApiKey = apiKeyMap[provider];
@@ -91,8 +95,9 @@ export function loadConfig(): AgentConfig {
     llmProvider: provider,
     llmModel:
       process.env.LLM_MODEL ||
-      ({ anthropic: "claude-sonnet-4-20250514", openai: "gpt-4o", google: "gemini-2.0-flash" }[provider] ?? "claude-sonnet-4-20250514"),
+      ({ anthropic: "claude-sonnet-4-20250514", openai: "gpt-4o", google: "gemini-2.0-flash", glm: "glm-5.1" }[provider] ?? "glm-5.1"),
     llmApiKey,
+    llmBaseUrl: process.env.LLM_BASE_URL || (provider === "glm" ? "https://open.bigmodel.cn/api/paas/v4" : undefined),
     merchantUrl: process.env.MERCHANT_URL || "http://localhost:1337",
     walletMode,
     walletPrivateKey: walletPrivateKey as `0x${string}` | undefined,
