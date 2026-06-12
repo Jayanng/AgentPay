@@ -180,10 +180,13 @@ async function main() {
     /exit        Exit the agent
 
   \x1b[2mEnvironment:\x1b[0m
-    LLM_PROVIDER                   anthropic | openai | google
+    LLM_PROVIDER                   gmicloud | anthropic | openai | google
+    GMI_API_KEY                    For GLM 5.1 via GMICloud (default)
     ANTHROPIC_API_KEY              For Claude
     OPENAI_API_KEY                 For GPT
     GOOGLE_GENERATIVE_AI_API_KEY   For Gemini
+    LLM_BASE_URL                   Override API base URL
+    LLM_MODEL                      Override model (default: zai-org/GLM-5.1-FP8)
     WALLET_PRIVATE_KEY             0x-prefixed (with USDC on Ethereum Sepolia)
     MERCHANT_URL                   Default: http://localhost:3001
     AUTO_APPROVE_PAYMENTS          true = skip payment confirmations
