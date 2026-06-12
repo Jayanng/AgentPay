@@ -1,0 +1,32 @@
+{
+  "name": "@agentpay/caw-wallet",
+  "version": "1.0.0",
+  "description": "Cobo Agentic Wallet (CAW) integration for AgentPay — Agent-Native Payments via x402",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "demo": "tsx src/demo.ts",
+    "demo:setup": "tsx src/demo-setup.ts",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.3",
+    "@types/node": "^22.0.0"
+  },
+  "keywords": [
+    "cobo",
+    "agentic-wallet",
+    "caw",
+    "x402",
+    "agent-payments",
+    "agentpay"
+  ],
+  "license": "MIT"
+}

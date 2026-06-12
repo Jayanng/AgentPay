@@ -1,0 +1,33 @@
+{
+  "name": "agentpay-x402",
+  "version": "2.0.0",
+  "description": "MCP client for AI agents to make Agent-Native Payments via x402 + Cobo Agentic Wallet",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "agentpay-x402": "./agentpay-x402.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"No tests configured yet\" && exit 0"
+  },
+  "dependencies": {
+    "abitype": "^1.2.3",
+    "viem": "^2.21.0",
+    "@agentpay/caw-wallet": "workspace:*"
+  },
+  "keywords": [
+    "mcp",
+    "x402",
+    "agent-native-payments",
+    "cobo-agentic-wallet",
+    "ai-agent",
+    "payments",
+    "claude"
+  ],
+  "author": "AgentPay",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
